@@ -26,6 +26,7 @@
 		/* Absolute imports */
 		"paths": {
 			"@pages/*": ["./src/pages/*"],
+			"@services/*": ["./src/services/*"],
 			"@components/*": ["./src/components/*"],
 			"@stylesheets/*": ["./src/stylesheets/*"]
 		}
