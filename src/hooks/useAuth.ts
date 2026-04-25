@@ -1,5 +1,5 @@
 const useAuth = () => {
-	return null;
+  return null;
 };
 
 export default useAuth;

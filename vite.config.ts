@@ -5,13 +5,13 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
-	resolve: {
-		alias: {
-			"@pages": path.resolve(__dirname, "src/pages"),
-			"@services": path.resolve(__dirname, "src/services"),
-			"@components": path.resolve(__dirname, "src/components"),
-			"@stylesheets": path.resolve(__dirname, "src/stylesheets"),
-		},
-	},
+  plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+  resolve: {
+    alias: {
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@services": path.resolve(__dirname, "src/services"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@stylesheets": path.resolve(__dirname, "src/stylesheets"),
+    },
+  },
 });

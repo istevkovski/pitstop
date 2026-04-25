@@ -8,19 +8,19 @@ import Login from "@pages/Login/index.tsx";
 import ProtectedRoute from "@components/ProtectedRoute/index.tsx";
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path="/login" element={<Login />} />
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-				{/* Protected routes */}
-				<Route element={<ProtectedRoute />}>
-					<Route path="/" element={<App />} />
-				</Route>
+        {/* Protected routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<App />} />
+        </Route>
 
-				{/* Page not found */}
-				<Route path="*" element={<MissingPage />} />
-			</Routes>
-		</BrowserRouter>
-	</StrictMode>,
+        {/* Page not found */}
+        <Route path="*" element={<MissingPage />} />
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>,
 );
