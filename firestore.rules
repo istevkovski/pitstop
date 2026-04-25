@@ -1,0 +1,49 @@
+rules_version = '2';
+
+// Pitstop Firestore security rules.
+//
+// Authorization model: every document lives under /users/{userId}.
+// A request is authorized if and only if the authenticated user owns
+// that subtree. There is no cross-user access in v1: no shared vehicles,
+// no public reads, no admin role.
+//
+// Default-deny is implicit — any path not matched below is denied.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // The user's own profile document.
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId);
+      
+      // Account deletion is not a v1 feature; deny at the rule layer
+      // so no client path can wipe a user record.
+      allow delete: if false;
+
+      // Vehicles owned by the user.
+      match /vehicles/{vehicleId} {
+        allow read, write: if isOwner(userId);
+
+        // Service entries belonging to this vehicle.
+        match /services/{serviceId} {
+          allow read, write: if isOwner(userId);
+        }
+
+        // Reminders belonging to this vehicle.
+        match /reminders/{reminderId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+rules_version = '2';
+
+// Pitstop Storage security rules.
+//
+// Photos for service entries live under:
+//   users/{userId}/vehicles/{vehicleId}/services/{serviceId}/{filename}
+//
+// Owner-only access. Uploads must be images and capped at 10 MiB.
+// Anything outside this path is denied by default.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/vehicles/{vehicleId}/services/{serviceId}/{filename} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId)
+        && request.resource.size < 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if isOwner(userId);
+    }
+  }
+}
