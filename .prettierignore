@@ -1,0 +1,10 @@
+# Build output
+dist
+dist-ssr
+
+# Package manager
+pnpm-lock.yaml
+
+# Firebase artifacts
+.firebase
+*.log
