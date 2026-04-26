@@ -8,10 +8,14 @@ export default defineConfig({
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   resolve: {
     alias: {
-      "@pages": path.resolve(__dirname, "src/pages"),
-      "@services": path.resolve(__dirname, "src/services"),
-      "@components": path.resolve(__dirname, "src/components"),
       "@stylesheets": path.resolve(__dirname, "src/stylesheets"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@layouts": path.resolve(__dirname, "src/layouts"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@constants": path.resolve(__dirname, "src/constants"),
+      "@helpers": path.resolve(__dirname, "src/helpers"),
+      "@services": path.resolve(__dirname, "src/services"),
     },
   },
 });

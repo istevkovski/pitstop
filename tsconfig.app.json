@@ -25,10 +25,14 @@
 
     /* Absolute imports */
     "paths": {
+      "@stylesheets/*": ["./src/stylesheets/*"],
       "@pages/*": ["./src/pages/*"],
-      "@services/*": ["./src/services/*"],
+      "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
-      "@stylesheets/*": ["./src/stylesheets/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@services/*": ["./src/services/*"]
     }
   },
   "include": ["src"]
