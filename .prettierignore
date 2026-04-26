@@ -1,6 +1,7 @@
 # Build output
 dist
 dist-ssr
+coverage
 
 # Package manager
 pnpm-lock.yaml
