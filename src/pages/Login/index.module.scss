@@ -1,6 +1,17 @@
 .login {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  max-width: 500px;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.form {
+  padding: fn.rem(12);
+  display: flex;
+  flex-direction: column;
+  gap: fn.rem(8);
+  border: fn.rem(1) solid white;
+  border-radius: fn.rem(16);
+  box-shadow: fn.rem(0) fn.rem(4) fn.rem(8) rgba(0, 0, 0, 0.15);
 }

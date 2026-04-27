@@ -1,40 +1,20 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState, type FormEvent } from "react";
-import { useLocation, useNavigate } from "react-router";
-import { auth } from "@services/firebase";
+import useSignIn from "@hooks/useSignIn";
 import classes from "./index.module.scss";
-import useAuth from "@hooks/useAuth";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { signIn, error, isSubmitting } = useSignIn();
 
-  const { isLoading } = useAuth();
-
-  console.log(isLoading);
-
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setError(null);
-    setIsSubmitting(true);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname;
-      navigate(from ?? "/", { replace: true });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign in failed");
-      setIsSubmitting(false);
-    }
+    signIn(email, password);
   };
 
   return (
-    <div>
-      This is: {isLoading}
-      <form className={classes.login} onSubmit={handleSubmit}>
+    <div className={classes.login}>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <h1>Sign in</h1>
         <input
           type="email"
