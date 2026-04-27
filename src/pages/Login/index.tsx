@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import useSignIn from "@hooks/useSignIn";
 import classes from "./index.module.scss";
+import { Input } from "@components/FormComponents";
 
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").pipe(z.email("Enter a valid email address")),
@@ -30,7 +31,7 @@ const Login = () => {
     <div className={classes.login}>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <h1>Sign in</h1>
-        <input
+        <Input
           type="email"
           aria-label="Email"
           placeholder="Email"
@@ -38,7 +39,7 @@ const Login = () => {
           {...register("email")}
         />
         {errors.email && <p role="alert">{errors.email.message}</p>}
-        <input
+        <Input
           type="password"
           aria-label="Password"
           placeholder="Password"

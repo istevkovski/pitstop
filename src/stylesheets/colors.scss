@@ -1,0 +1,44 @@
+@use "sass:map";
+
+$primary: (
+  "primary-400": #019ac9,
+  "primary-300": #03aee2,
+  "primary-200": #00c3ff,
+  "primary-100": #27ccff,
+  "primary-50": #4dd5ff,
+);
+
+$neutrals: (
+  "neutrals-400": #8e8e93,
+  "neutrals-300": #aeaeb2,
+  "neutrals-200": #d1d1d6,
+  "neutrals-100": #e5e5ea,
+  "neutrals-50": #f2f2f7,
+  "neutrals-0": #fff,
+);
+
+$text: (
+  "text-300": #222222,
+  "text-200": #3e4343,
+  "text-100": #74767f,
+  "text-0": #fff,
+);
+
+$all-hues: (
+  "primary/Primary": $primary,
+  "neutrals/Neutrals": $neutrals,
+  "text/Text": $text,
+);
+
+@function palette($key, $opacity: null) {
+  @each $hue-map in map.values($all-hues) {
+    @if map.has-key($hue-map, $key) {
+      $value: map-get($hue-map, $key);
+      @if $opacity != null {
+        @return rgba($value, $opacity);
+      }
+      @return $value;
+    }
+  }
+  @error "Color `#{$key}` not found in palette.";
+}

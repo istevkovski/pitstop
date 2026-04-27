@@ -1,0 +1,9 @@
+@use "@stylesheets/colors" as colors;
+
+.input {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background-color: colors.palette("neutrals-50");
+  border-radius: 0.5rem;
+  color: colors.palette("text-200");
+}

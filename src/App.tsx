@@ -1,4 +1,5 @@
 import { ROUTES } from "@constants/routes";
+import NavbarLayout from "@layouts/NavbarLayout";
 import ProtectedRoute from "@layouts/ProtectedRoute";
 import Login from "@pages/Login";
 import NotFound from "@pages/NotFound";
@@ -9,15 +10,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ROUTES.login} element={<Login />} />
+        <Route element={<NavbarLayout />}>
+          <Route path={ROUTES.login} element={<Login />} />
 
-        {/* Protected routes */}
-        <Route element={<ProtectedRoute />}>
-          <Route path={ROUTES.base} element={<Overview />} />
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path={ROUTES.base} element={<Overview />} />
+          </Route>
+
+          {/* Generic */}
+          <Route path="*" element={<NotFound />} />
         </Route>
-
-        {/* Generic */}
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
