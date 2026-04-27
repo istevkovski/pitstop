@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "@services/firebase";
+import { ROUTES } from "@constants/routes";
 
 const useSignIn = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const useSignIn = () => {
     try {
       await action();
       const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname;
-      navigate(from ?? "/", { replace: true });
+      navigate(from ?? ROUTES.base, { replace: true });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Sign in failed");
       setIsSubmitting(false);

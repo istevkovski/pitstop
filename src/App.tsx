@@ -13,7 +13,7 @@ function App() {
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Overview />} />
+          <Route path={ROUTES.base} element={<Overview />} />
         </Route>
 
         {/* Generic */}
