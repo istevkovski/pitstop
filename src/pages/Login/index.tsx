@@ -4,6 +4,7 @@ import { z } from "zod";
 import useSignIn from "@hooks/useSignIn";
 import classes from "./index.module.scss";
 import { Input } from "@components/FormComponents";
+import Typography from "@components/Typography";
 
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").pipe(z.email("Enter a valid email address")),
@@ -14,6 +15,7 @@ type LoginValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const { signIn, error, isSubmitting } = useSignIn();
+
   const {
     register,
     handleSubmit,
@@ -30,6 +32,7 @@ const Login = () => {
   return (
     <div className={classes.login}>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Typography tag="a">Hello world</Typography>
         <h1>Sign in</h1>
         <Input
           type="email"

@@ -24,14 +24,14 @@ $text: (
   "text-0": #fff,
 );
 
-$all-hues: (
+$hues-map: (
   "primary/Primary": $primary,
   "neutrals/Neutrals": $neutrals,
   "text/Text": $text,
 );
 
 @function palette($key, $opacity: null) {
-  @each $hue-map in map.values($all-hues) {
+  @each $hue-map in map.values($hues-map) {
     @if map.has-key($hue-map, $key) {
       $value: map-get($hue-map, $key);
       @if $opacity != null {

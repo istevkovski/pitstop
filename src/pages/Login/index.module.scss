@@ -7,11 +7,10 @@
 }
 
 .form {
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  border: fn.rem(1) solid white;
-  border-radius: 1rem;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+  width: fn.rem(500);
+  min-height: fn.rem(500);
+  text-align: center;
 }
