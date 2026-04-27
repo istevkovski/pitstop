@@ -1,0 +1,9 @@
+// This is a globally injected file under the `fn` namespace
+@use "sass:math";
+
+@function rem($px) {
+  @if $px == 0 {
+    @return 0;
+  }
+  @return math.div($px, 16) * 1rem;
+}

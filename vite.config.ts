@@ -6,6 +6,13 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@stylesheets/functions" as fn;`,
+      },
+    },
+  },
   resolve: {
     alias: {
       "@stylesheets": path.resolve(__dirname, "src/stylesheets"),
